@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { stats } from "@/content/site";
 import { useLang } from "@/lib/language";
 import { useScrollProgress } from "@/lib/use-scroll-progress";
@@ -14,7 +15,20 @@ function StatCard({ stat, index }: { stat: (typeof stats)[number]; index: number
     distance: 0.42,
   });
 
+  // Der Endwert steht immer im HTML. Hochgezählt wird nur, wenn die Karte beim Laden
+  // noch unter dem Viewport liegt — sonst sähen Suchmaschinen und Besucher ohne
+  // JavaScript nur Nullen.
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (node.getBoundingClientRect().top > window.innerHeight * 0.9) setAnimated(true);
+  }, [ref]);
+
   const eased = 1 - Math.pow(1 - progress, 3);
+  const shown = animated ? Math.round(stat.value * eased) : stat.value;
 
   return (
     <div
@@ -25,12 +39,15 @@ function StatCard({ stat, index }: { stat: (typeof stats)[number]; index: number
     >
       <p className="font-mono text-4xl font-medium tracking-tight text-[var(--color-text)] tabular-nums sm:text-5xl">
         {stat.prefix}
-        {Math.round(stat.value * eased)}
+        {shown}
         {stat.suffix}
       </p>
       <p className="mt-3 text-sm leading-snug text-[var(--color-muted)] text-pretty">
         {t(stat.label)}
       </p>
+      {stat.period ? (
+        <p className="mt-1 font-mono text-[11px] text-[var(--color-faint)]">{t(stat.period)}</p>
+      ) : null}
     </div>
   );
 }

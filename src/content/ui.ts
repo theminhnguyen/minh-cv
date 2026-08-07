@@ -23,14 +23,14 @@ export const ui: Record<string, L> = {
     en: "What I have owned and moved so far.",
   },
 
-  sectionAi: { de: "Von Managen zu Bauen", en: "From managing to building" },
+  sectionAi: { de: "Wie ich mit KI arbeite", en: "How I work with AI" },
   sectionAiLead: {
     de: "KI ist für mich kein Trendthema, sondern seit Jahren Arbeitsalltag — in vier Stufen.",
     en: "AI is not a trend topic for me but daily work — in four stages.",
   },
   aiOutro: {
-    de: "Die acht Produkte, die ich neben dem Job gebaut habe, findest du auf meiner Showcase-Seite.",
-    en: "The eight products I built alongside my job live on my showcase site.",
+    de: "Die dreizehn Produkte, die ich neben dem Job gebaut habe, findest du auf meiner Showcase-Seite.",
+    en: "The thirteen products I built alongside my job live on my showcase site.",
   },
 
   sectionCareer: { de: "Werdegang", en: "Career" },

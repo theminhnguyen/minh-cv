@@ -19,7 +19,7 @@ export default function ImprintPage() {
       {lang === "de" ? (
         <div className="mt-8 space-y-5 text-sm leading-relaxed text-[var(--color-muted)]">
           <h1 className="text-2xl font-semibold text-[var(--color-text)]">Impressum</h1>
-          <p>Angaben gemäß § 5 TMG</p>
+          <p>Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)</p>
           <p>
             {site.name}
             <br />
@@ -37,7 +37,7 @@ export default function ImprintPage() {
             .
           </p>
           <p>
-            Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: {site.name}, Anschrift wie oben.
+            Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: {site.name}, Anschrift wie oben.
           </p>
           <p className="text-xs text-[var(--color-faint)]">
             Diese Seite ist ein privates, nicht-kommerzielles Portfolio-Projekt.
@@ -46,7 +46,7 @@ export default function ImprintPage() {
       ) : (
         <div className="mt-8 space-y-5 text-sm leading-relaxed text-[var(--color-muted)]">
           <h1 className="text-2xl font-semibold text-[var(--color-text)]">Legal notice</h1>
-          <p>Information according to § 5 TMG (German Telemedia Act)</p>
+          <p>Information according to § 5 DDG (German Digital Services Act)</p>
           <p>
             {site.name}
             <br />
@@ -63,7 +63,7 @@ export default function ImprintPage() {
             </a>
             .
           </p>
-          <p>Responsible for the content according to § 55 (2) RStV: {site.name}, address as above.</p>
+          <p>Responsible for the content according to § 18 (2) MStV: {site.name}, address as above.</p>
           <p className="text-xs text-[var(--color-faint)]">
             This site is a private, non-commercial portfolio project.
           </p>

@@ -65,4 +65,6 @@ export type Stat = {
   prefix?: string;
   decimals?: number;
   label: L;
+  /** Zeitbezug, damit klar ist, aus welcher Rolle die Kennzahl stammt. */
+  period?: L;
 };

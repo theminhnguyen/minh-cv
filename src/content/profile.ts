@@ -72,8 +72,8 @@ export const skillClusters: SkillCluster[] = [
       {
         name: { de: "Ausprobieren statt abwarten", en: "Trying things instead of waiting" },
         proof: {
-          de: "Acht eigene Produkte als Technologie-Experimente gebaut und live deployed",
-          en: "Eight of my own products built and shipped as technology experiments",
+          de: "Dreizehn eigene Produkte als Technologie-Experimente gebaut und live deployed",
+          en: "Thirteen of my own products built and shipped as technology experiments",
         },
       },
     ],

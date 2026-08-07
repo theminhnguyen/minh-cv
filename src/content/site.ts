@@ -34,6 +34,7 @@ export const stats: Stat[] = [
       de: "Verantwortetes Projektvolumen",
       en: "Project volume under my responsibility",
     },
+    period: { de: "2022–2025", en: "2022–2025" },
   },
   {
     value: 19,
@@ -41,6 +42,7 @@ export const stats: Stat[] = [
       de: "Entwickler im aktuellen Team",
       en: "Developers in my current team",
     },
+    period: { de: "seit 2025", en: "since 2025" },
   },
   {
     value: 120,
@@ -49,6 +51,7 @@ export const stats: Stat[] = [
       de: "Teammitglieder in 3 Monaten skaliert",
       en: "Team members scaled within 3 months",
     },
+    period: { de: "2022", en: "2022" },
   },
   {
     value: 9,
@@ -57,6 +60,7 @@ export const stats: Stat[] = [
       de: "Jahre Produkt- & Führungsverantwortung",
       en: "Years of product & leadership ownership",
     },
+    period: { de: "seit 2017", en: "since 2017" },
   },
 ];
 
@@ -89,8 +93,8 @@ export const aiStory: Array<{ step: string; title: L; text: L }> = [
     step: "04",
     title: { de: "Selbst gebaut", en: "Hands-on" },
     text: {
-      de: "Acht eigene Produkte im Vibe-Coding-Stil entwickelt und live deployed — Live-Sync-Apps, ein Bluetooth-Health-Dashboard, ein Browser-Multiplayer, macOS-Tools. Jedes davon ein Experiment, um neue Technologie wirklich zu verstehen.",
-      en: "Eight of my own products built and shipped in vibe-coding style — live-sync apps, a Bluetooth health dashboard, a browser multiplayer, macOS tools. Each one an experiment to really understand a new technology.",
+      de: "Dreizehn eigene Produkte im Vibe-Coding-Stil entwickelt und live deployed — von der lokalen KI-Diktier-App über einen KI-Medien-Tracker bis zum begehbaren 3D-Schloss. Jedes davon ein Experiment, um neue Technologie wirklich zu verstehen.",
+      en: "Thirteen of my own products built and shipped in vibe-coding style — from a local AI dictation app to an AI media tracker and a walkable 3D castle. Each one an experiment to really understand a new technology.",
     },
   },
 ];
