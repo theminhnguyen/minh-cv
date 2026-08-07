@@ -25,8 +25,8 @@ export const ui: Record<string, L> = {
 
   sectionAi: { de: "Wie ich mit KI arbeite", en: "How I work with AI" },
   sectionAiLead: {
-    de: "KI ist für mich kein Trendthema, sondern seit Jahren Arbeitsalltag — in vier Stufen.",
-    en: "AI is not a trend topic for me but daily work — in four stages.",
+    de: "KI ist für mich kein Trendthema, sondern Arbeitsalltag — in drei beruflichen Stufen. Und einer privaten, die den Unterschied macht.",
+    en: "AI is not a trend topic for me but daily work — in three professional stages. Plus a private one that makes the difference.",
   },
   aiOutro: {
     de: "Die dreizehn Produkte, die ich neben dem Job gebaut habe, findest du auf meiner Showcase-Seite.",
