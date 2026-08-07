@@ -20,7 +20,7 @@ const mono = JetBrains_Mono({
 });
 
 const description =
-  "The Minh Nguyen — Team Lead BPM & Intelligent Automation bei E.ON Digital Technology. 9+ Jahre Produkt-, Projekt- und Führungsverantwortung. Führt KI-Automatisierung im Konzern und baut eigene KI-Produkte.";
+  "The Minh Nguyen — Team Lead BPM & Intelligent Automation bei E.ON Digital Technology. Führt ein Team von 19 Entwicklern und bringt KI-Projekte vom Piloten in den Betrieb. 9+ Jahre Produkt-, Projekt- und Führungsverantwortung.";
 
 const title = "The Minh Nguyen — Team Lead BPM & Intelligent Automation";
 

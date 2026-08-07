@@ -12,16 +12,16 @@ export const site = {
 
 export const hero = {
   eyebrow: {
-    de: "Team Lead BPM & Intelligent Automation @ E.ON Digital Technology",
-    en: "Team Lead BPM & Intelligent Automation @ E.ON Digital Technology",
+    de: "Erst ausprobieren. Dann skalieren.",
+    en: "Try it first. Then scale it.",
   } satisfies L,
   headline: {
-    de: ["Ich führe KI-", "Automatisierung", " — und baue sie selbst."],
-    en: ["I lead AI ", "automation", " — and build it myself."],
+    de: ["Vom Pilot in den ", "Betrieb", "."],
+    en: ["From pilot to ", "production", "."],
   },
   lead: {
-    de: "Seit über 9 Jahren verantworte ich Teams und Produkte in Enterprise-Umgebungen — heute ein Entwicklungsteam für BPM und Intelligent Automation. Was mich antreibt: ausprobieren, was mit KI heute schon geht, und es selbst bauen, statt nur darüber zu reden.",
-    en: "For over 9 years I have owned teams and products in enterprise environments — today a development team for BPM and intelligent automation. What drives me: finding out what AI can already do, and building it myself instead of just talking about it.",
+    de: "Ich führe bei E.ON Digital Technology ein Team von 19 Entwicklern, das Konzernprozesse mit BPM und KI automatisiert. Seit über 9 Jahren verantworte ich Teams und Produkte in Enterprise-Umgebungen — und baue KI-Prototypen weiterhin selbst, statt nur darüber zu reden.",
+    en: "At E.ON Digital Technology I lead a team of 19 developers automating corporate processes with BPM and AI. For over 9 years I have owned teams and products in enterprise environments — and I still build AI prototypes myself instead of just talking about them.",
   } satisfies L,
 };
 
