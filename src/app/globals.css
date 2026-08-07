@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #08090b;
+  --color-surface: #0e1013;
+  --color-surface-2: #14171c;
+  --color-line: #23272e;
+  --color-text: #e8eaed;
+  --color-muted: #9aa3ae;
+  --color-faint: #6b7480;
+  --color-accent: #2ee6c5;
+  --color-accent-soft: #16413c;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, "SF Mono", monospace;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+  --color-bg: #fbfbfc;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f4f6;
+  --color-line: #e0e2e6;
+  --color-text: #14161a;
+  --color-muted: #565d67;
+  --color-faint: #767d87;
+  --color-accent: #0d8f78;
+  --color-accent-soft: #d5f5ee;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Feines Raster im Hintergrund — erzeugt die technische Anmutung. */
+.grid-backdrop {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-line) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-line) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-accent),
+    color-mix(in oklab, var(--color-accent) 45%, var(--color-text))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s var(--ease-out-soft),
+    transform 0.6s var(--ease-out-soft);
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  :root,
+  .light {
+    --color-bg: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-2: #ffffff;
+    --color-line: #cccccc;
+    --color-text: #000000;
+    --color-muted: #333333;
+    --color-faint: #555555;
+    --color-accent: #0d8f78;
+  }
+
+  body {
+    background: #fff;
+    font-size: 10.5pt;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  section {
+    break-inside: avoid;
+    padding-block: 1rem !important;
+  }
+}
