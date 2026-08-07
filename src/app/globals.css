@@ -310,16 +310,17 @@ body {
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-slide 52s linear infinite;
+  animation: ticker-slide 30s linear infinite;
 }
 
 .ticker-mask:hover .ticker-track {
   animation-play-state: paused;
 }
 
+/* Verschiebt um genau eine der vier Kopien — dadurch wirkt die Schleife endlos. */
 @keyframes ticker-slide {
   to {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 

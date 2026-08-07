@@ -1,25 +1,19 @@
 "use client";
 
+// Abwechselnd Leadership und KI, damit beide Schwerpunkte gleichgewichtig durchlaufen.
 const keywords = [
   "Team Leadership",
   "Intelligent Automation",
-  "Business Process Management",
-  "AI Design Sprint",
-  "Machine Learning",
-  "Product Management",
-  "Scrum",
-  "Agile Coaching",
   "Talent Development",
-  "Roadmapping",
-  "Stakeholder Management",
-  "P&L",
-  "Rolling Forecast",
-  "Servant Leadership",
-  "Change Management",
-  "ITIL",
-  "Discovery",
-  "Prototyping",
+  "Business Process Management",
+  "Team Scaling",
+  "AI Design Sprint",
+  "P&L Ownership",
+  "Machine Learning",
 ];
+
+// Vier Kopien, damit auch auf breiten Bildschirmen keine Lücke in der Schleife entsteht.
+const COPIES = [0, 1, 2, 3];
 
 export function Ticker() {
   return (
@@ -28,8 +22,7 @@ export function Ticker() {
       className="ticker-mask no-print overflow-hidden border-y border-[var(--color-line)] py-4"
     >
       <div className="ticker-track">
-        {/* Zweimal gerendert, damit die Schleife nahtlos umbricht. */}
-        {[0, 1].map((copy) => (
+        {COPIES.map((copy) => (
           <div key={copy} className="flex shrink-0 items-center">
             {keywords.map((word) => (
               <span
