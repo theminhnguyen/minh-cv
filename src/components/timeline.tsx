@@ -122,7 +122,13 @@ export function Timeline() {
                 </p>
               </header>
 
-              <ol className="relative mt-6 space-y-8 before:absolute before:top-2 before:bottom-2 before:left-[15px] before:w-px before:bg-[var(--color-line)]">
+              <ol className="relative mt-6 space-y-8">
+                <span
+                  aria-hidden="true"
+                  className="absolute top-2 bottom-2 left-[15px] w-px bg-[var(--color-line)]"
+                >
+                  <span className="timeline-fill block h-full w-px bg-[var(--color-accent)]" />
+                </span>
                 {company.roles.map((role) => (
                   <RoleEntry key={role.id} role={role} dimmed={!matches(role, filter)} />
                 ))}

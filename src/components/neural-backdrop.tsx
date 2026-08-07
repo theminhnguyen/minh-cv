@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { subscribeScroll } from "@/lib/scroll";
 
 type Node = { x: number; y: number; vx: number; vy: number };
 
@@ -8,7 +9,7 @@ const DENSITY = 14000; // ein Knoten pro X Pixel Fläche
 const MAX_NODES = 70;
 const LINK_DISTANCE = 130;
 
-/** Dekoratives Knotennetz hinter dem Hero. Rein visuell, ohne Bedeutung. */
+/** Dekoratives Knotennetz hinter dem Hero, das beim Scrollen kurz aufgeregt reagiert. */
 export function NeuralBackdrop() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -24,6 +25,8 @@ export function NeuralBackdrop() {
     let frame = 0;
     let width = 0;
     let height = 0;
+    let energy = 0; // 0 = ruhig, 1 = maximal aufgeregt
+    let lastScrollY = window.scrollY;
 
     const accent = () =>
       getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim() ||
@@ -47,13 +50,21 @@ export function NeuralBackdrop() {
       }));
     };
 
+    const unsubscribe = subscribeScroll(() => {
+      const delta = Math.abs(window.scrollY - lastScrollY);
+      lastScrollY = window.scrollY;
+      energy = Math.min(1, energy + delta / 260);
+    });
+
     const draw = () => {
       context.clearRect(0, 0, width, height);
       const color = accent();
+      const speed = 1 + energy * 5;
+      const reach = LINK_DISTANCE * (1 + energy * 0.35);
 
       for (const node of nodes) {
-        node.x += node.vx;
-        node.y += node.vy;
+        node.x += node.vx * speed;
+        node.y += node.vy * speed;
         if (node.x < 0 || node.x > width) node.vx *= -1;
         if (node.y < 0 || node.y > height) node.vy *= -1;
       }
@@ -63,8 +74,8 @@ export function NeuralBackdrop() {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const distance = Math.hypot(dx, dy);
-          if (distance > LINK_DISTANCE) continue;
-          context.globalAlpha = (1 - distance / LINK_DISTANCE) * 0.28;
+          if (distance > reach) continue;
+          context.globalAlpha = (1 - distance / reach) * (0.28 + energy * 0.3);
           context.strokeStyle = color;
           context.lineWidth = 0.6;
           context.beginPath();
@@ -78,10 +89,11 @@ export function NeuralBackdrop() {
       context.fillStyle = color;
       for (const node of nodes) {
         context.beginPath();
-        context.arc(node.x, node.y, 1.4, 0, Math.PI * 2);
+        context.arc(node.x, node.y, 1.4 + energy * 0.9, 0, Math.PI * 2);
         context.fill();
       }
 
+      energy *= 0.94; // klingt nach dem Scrollen wieder ab
       frame = window.requestAnimationFrame(draw);
     };
 
@@ -94,6 +106,7 @@ export function NeuralBackdrop() {
     return () => {
       window.cancelAnimationFrame(frame);
       observer.disconnect();
+      unsubscribe();
     };
   }, []);
 

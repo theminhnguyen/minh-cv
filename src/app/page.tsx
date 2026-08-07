@@ -10,6 +10,7 @@ import { Skills } from "@/components/skills";
 import { Education } from "@/components/education";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { useLang } from "@/lib/language";
 import { site } from "@/content/site";
 import { LinkedinIcon } from "@/components/linkedin-icon";
@@ -26,6 +27,7 @@ export default function Home() {
         {tk("skipToContent")}
       </a>
 
+      <ScrollProgress />
       <Header />
 
       <main id="main">

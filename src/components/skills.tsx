@@ -11,11 +11,11 @@ export function Skills() {
   const { t } = useLang();
 
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <div className="perspective grid grid-cols-1 gap-4 lg:grid-cols-2">
       {skillClusters.map((cluster, index) => {
         const Icon = icons[cluster.icon];
         return (
-          <Reveal key={cluster.id} delay={index * 70} className="h-full">
+          <Reveal key={cluster.id} delay={index * 70} className="h-full" variant="card">
             <article className="h-full rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
               <div className="flex items-center gap-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-accent-soft)] text-[var(--color-accent)]">

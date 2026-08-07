@@ -7,20 +7,29 @@ import { useLang } from "@/lib/language";
 import { NeuralBackdrop } from "./neural-backdrop";
 import { LinkedinIcon } from "./linkedin-icon";
 import { withBase } from "@/lib/paths";
+import { useReducedMotion, useScrollY } from "@/lib/use-scroll-progress";
 
 export function Hero() {
   const { lang, t, tk } = useLang();
   const [before, accent, after] = hero.headline[lang];
+  const scrollY = useScrollY();
+  const reducedMotion = useReducedMotion();
+
+  // Text und Portrait bewegen sich unterschiedlich schnell — klassischer Parallax.
+  const depth = reducedMotion ? 0 : Math.min(scrollY, 900);
+  const textStyle = { transform: `translate3d(0, ${depth * 0.08}px, 0)`, opacity: 1 - depth / 1400 };
+  const photoStyle = { transform: `translate3d(0, ${depth * -0.06}px, 0)` };
+  const gridStyle = { transform: `translate3d(0, ${depth * 0.22}px, 0)` };
 
   return (
     <section id="top" className="relative isolate overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10" style={gridStyle} />
       <div className="absolute inset-0 -z-10">
         <NeuralBackdrop />
       </div>
 
       <div className="mx-auto grid w-full max-w-[68rem] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-        <div>
+        <div style={textStyle}>
           <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl">
             {before}
             <span className="text-gradient">{accent}</span>
@@ -74,7 +83,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[19rem] lg:max-w-none">
+        <div className="relative mx-auto w-full max-w-[19rem] lg:max-w-none" style={photoStyle}>
           <div
             aria-hidden="true"
             className="absolute -inset-3 rounded-3xl bg-[var(--color-accent)] opacity-[0.07] blur-2xl"
