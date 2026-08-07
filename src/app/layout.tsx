@@ -77,9 +77,11 @@ const personJsonLd = {
     { "@type": "CollegeOrUniversity", name: "VIA University College" },
   ],
   knowsAbout: [
+    "Team Leadership",
     "Intelligent Automation",
     "Business Process Management",
     "Artificial Intelligence",
+    "AI Design Sprint",
     "Product Management",
     "Agile Leadership",
   ],

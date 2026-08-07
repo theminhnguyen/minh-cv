@@ -20,8 +20,8 @@ export const hero = {
     en: ["I lead AI ", "automation", " — and build it myself."],
   },
   lead: {
-    de: "9+ Jahre Produkte, Projekte und Teams in Enterprise-Umgebungen. Heute verantworte ich ein Entwicklungsteam für BPM und Intelligent Automation. Abends baue ich eigene KI-gestützte Produkte — vom ersten Prototyp bis zum Deployment.",
-    en: "9+ years of products, projects and teams in enterprise environments. Today I lead a development team for BPM and intelligent automation. In my own time I build AI-powered products — from first prototype to deployment.",
+    de: "Seit über 9 Jahren verantworte ich Teams und Produkte in Enterprise-Umgebungen — heute ein Entwicklungsteam für BPM und Intelligent Automation. Was mich antreibt: ausprobieren, was mit KI heute schon geht, und es selbst bauen, statt nur darüber zu reden.",
+    en: "For over 9 years I have owned teams and products in enterprise environments — today a development team for BPM and intelligent automation. What drives me: finding out what AI can already do, and building it myself instead of just talking about it.",
   } satisfies L,
 };
 
@@ -81,16 +81,16 @@ export const aiStory: Array<{ step: string; title: L; text: L }> = [
     step: "03",
     title: { de: "Geführt", en: "Leading" },
     text: {
-      de: "Heute Team Lead für BPM & Intelligent Automation bei E.ON: 19 Entwickler, KI-gestützte Automatisierungsstrategie, volle P&L-Verantwortung.",
-      en: "Today Team Lead for BPM & intelligent automation at E.ON: 19 developers, AI-driven automation strategy, full P&L ownership.",
+      de: "Heute Team Lead für BPM & Intelligent Automation bei E.ON: 19 Entwickler, KI-gestützte Automatisierungsstrategie, volle P&L-Verantwortung. Als zertifizierter AI Design Sprint® Facilitator hole ich Teams dabei ins Ausprobieren.",
+      en: "Today Team Lead for BPM & intelligent automation at E.ON: 19 developers, AI-driven automation strategy, full P&L ownership. As a certified AI Design Sprint® facilitator I get teams experimenting.",
     },
   },
   {
     step: "04",
     title: { de: "Selbst gebaut", en: "Hands-on" },
     text: {
-      de: "Acht eigene Produkte im Vibe-Coding-Stil entwickelt und live deployed — Live-Sync-Apps, ein Bluetooth-Health-Dashboard, ein Browser-Multiplayer, macOS-Tools.",
-      en: "Eight of my own products built and shipped in vibe-coding style — live-sync apps, a Bluetooth health dashboard, a browser multiplayer, macOS tools.",
+      de: "Acht eigene Produkte im Vibe-Coding-Stil entwickelt und live deployed — Live-Sync-Apps, ein Bluetooth-Health-Dashboard, ein Browser-Multiplayer, macOS-Tools. Jedes davon ein Experiment, um neue Technologie wirklich zu verstehen.",
+      en: "Eight of my own products built and shipped in vibe-coding style — live-sync apps, a Bluetooth health dashboard, a browser multiplayer, macOS tools. Each one an experiment to really understand a new technology.",
     },
   },
 ];

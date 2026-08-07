@@ -9,9 +9,9 @@ import { Reveal } from "./reveal";
 
 const filters = [
   { id: "all", key: "filterAll" },
+  { id: "leadership", key: "filterLeadership" },
   { id: "ai", key: "filterAi" },
   { id: "product", key: "filterProduct" },
-  { id: "leadership", key: "filterLeadership" },
   { id: "delivery", key: "filterDelivery" },
 ] as const;
 

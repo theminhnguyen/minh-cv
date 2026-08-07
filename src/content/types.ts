@@ -48,6 +48,8 @@ export type Certification = {
   name: string;
   issuer: string;
   group: "ai" | "delivery";
+  /** Nur gesetzt, wo das Jahr belegt ist — wird dann als Aktualitätshinweis gezeigt. */
+  year?: string;
 };
 
 export type SkillCluster = {

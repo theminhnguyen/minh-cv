@@ -2,43 +2,8 @@ import type { Certification, Degree, SkillCluster } from "./types";
 
 export const skillClusters: SkillCluster[] = [
   {
-    id: "ai",
-    title: { de: "KI & Automatisierung", en: "AI & Automation" },
-    icon: "brain",
-    items: [
-      {
-        name: { de: "Intelligent Automation", en: "Intelligent automation" },
-        proof: {
-          de: "Automatisierungsstrategie für einen Energiekonzern, umgesetzt mit BPM- und KI-Technologien",
-          en: "Automation strategy for an energy group, delivered with BPM and AI technologies",
-        },
-      },
-      {
-        name: { de: "Business Process Management", en: "Business process management" },
-        proof: {
-          de: "Führung eines dedizierten BPM-Entwicklungsteams mit 19 Personen",
-          en: "Leading a dedicated BPM development team of 19 people",
-        },
-      },
-      {
-        name: { de: "ML-Vorhaben steuern", en: "Steering ML initiatives" },
-        proof: {
-          de: "Zertifiziert durch Duke University: ML Foundations for Product Managers und Managing ML Projects",
-          en: "Certified by Duke University: ML Foundations for Product Managers and Managing ML Projects",
-        },
-      },
-      {
-        name: { de: "Prototyping mit KI-Tools", en: "Prototyping with AI tools" },
-        proof: {
-          de: "Acht eigene Produkte im Vibe-Coding-Stil gebaut und live deployed",
-          en: "Eight self-built products shipped in vibe-coding style",
-        },
-      },
-    ],
-  },
-  {
     id: "leadership",
-    title: { de: "Engineering Leadership", en: "Engineering leadership" },
+    title: { de: "Leadership", en: "Leadership" },
     icon: "users",
     items: [
       {
@@ -67,6 +32,48 @@ export const skillClusters: SkillCluster[] = [
         proof: {
           de: "Von 30 auf 120+ Projektmitglieder in 3 Monaten",
           en: "From 30 to 120+ project members within 3 months",
+        },
+      },
+    ],
+  },
+  {
+    id: "ai",
+    title: { de: "KI & Automatisierung", en: "AI & Automation" },
+    icon: "brain",
+    items: [
+      {
+        name: { de: "Intelligent Automation", en: "Intelligent automation" },
+        proof: {
+          de: "Automatisierungsstrategie für einen Energiekonzern, umgesetzt mit BPM- und KI-Technologien",
+          en: "Automation strategy for an energy group, delivered with BPM and AI technologies",
+        },
+      },
+      {
+        name: { de: "Business Process Management", en: "Business process management" },
+        proof: {
+          de: "Führung eines dedizierten BPM-Entwicklungsteams mit 19 Personen",
+          en: "Leading a dedicated BPM development team of 19 people",
+        },
+      },
+      {
+        name: { de: "KI-Design-Sprints leiten", en: "Facilitating AI design sprints" },
+        proof: {
+          de: "Zertifizierter AI Design Sprint® Facilitator (33A) für Prozessautomatisierung",
+          en: "Certified AI Design Sprint® facilitator (33A) for process automation",
+        },
+      },
+      {
+        name: { de: "ML-Vorhaben steuern", en: "Steering ML initiatives" },
+        proof: {
+          de: "Zertifiziert durch Duke University: ML Foundations for Product Managers und Managing ML Projects",
+          en: "Certified by Duke University: ML Foundations for Product Managers and Managing ML Projects",
+        },
+      },
+      {
+        name: { de: "Ausprobieren statt abwarten", en: "Trying things instead of waiting" },
+        proof: {
+          de: "Acht eigene Produkte als Technologie-Experimente gebaut und live deployed",
+          en: "Eight of my own products built and shipped as technology experiments",
         },
       },
     ],
@@ -190,6 +197,12 @@ export const degrees: Degree[] = [
 ];
 
 export const certifications: Certification[] = [
+  {
+    name: "AI Design Sprint® — Process Automation Facilitator",
+    issuer: "33A, Kopenhagen",
+    group: "ai",
+    year: "2026",
+  },
   {
     name: "Machine Learning Foundations for Product Managers",
     issuer: "Duke University / Coursera",

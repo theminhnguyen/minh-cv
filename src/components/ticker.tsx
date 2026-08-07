@@ -1,14 +1,16 @@
 "use client";
 
 const keywords = [
+  "Team Leadership",
   "Intelligent Automation",
   "Business Process Management",
+  "AI Design Sprint",
   "Machine Learning",
   "Product Management",
   "Scrum",
   "Agile Coaching",
+  "Talent Development",
   "Roadmapping",
-  "Design Sprint",
   "Stakeholder Management",
   "P&L",
   "Rolling Forecast",

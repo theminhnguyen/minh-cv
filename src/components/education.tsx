@@ -68,7 +68,12 @@ export function Education() {
                   }`}
                 >
                   <p className="text-sm font-medium text-pretty">{cert.name}</p>
-                  <p className="mt-0.5 text-xs text-[var(--color-faint)]">{cert.issuer}</p>
+                  <p className="mt-0.5 text-xs text-[var(--color-faint)]">
+                    {cert.issuer}
+                    {cert.year ? (
+                      <span className="ml-2 font-mono text-[var(--color-accent)]">{cert.year}</span>
+                    ) : null}
+                  </p>
                 </li>
               ))}
             </ul>
