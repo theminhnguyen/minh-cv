@@ -11,6 +11,7 @@ import { Education } from "@/components/education";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { Ticker } from "@/components/ticker";
 import { useLang } from "@/lib/language";
 import { site } from "@/content/site";
 import { LinkedinIcon } from "@/components/linkedin-icon";
@@ -28,10 +29,12 @@ export default function Home() {
       </a>
 
       <ScrollProgress />
+      <div aria-hidden="true" className="grain no-print" />
       <Header />
 
       <main id="main">
         <Hero />
+        <Ticker />
 
         <Section
           id="impact"

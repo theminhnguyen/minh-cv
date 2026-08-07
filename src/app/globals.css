@@ -10,6 +10,7 @@
   --color-faint: #6b7480;
   --color-accent: #2ee6c5;
   --color-accent-soft: #16413c;
+  --color-accent-2: #6d7cf5;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-face), ui-monospace, "SF Mono", monospace;
@@ -19,6 +20,7 @@
 
 :root {
   color-scheme: dark;
+  --grain-opacity: 0.05;
 }
 
 .light {
@@ -32,6 +34,8 @@
   --color-faint: #767d87;
   --color-accent: #0d8f78;
   --color-accent-soft: #d5f5ee;
+  --color-accent-2: #4a56c9;
+  --grain-opacity: 0.03;
 }
 
 html {
@@ -180,6 +184,145 @@ body {
   perspective: 1200px;
 }
 
+/* ---------- Film-Grain ---------- */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.light .grain {
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Aurora-Verlauf im Hero ---------- */
+
+.aurora {
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 130%;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, #000 40%, transparent 92%);
+}
+
+.aurora span {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.aurora span:nth-child(1) {
+  top: 4%;
+  left: 8%;
+  width: 38rem;
+  height: 26rem;
+  background: color-mix(in oklab, var(--color-accent) 34%, transparent);
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+
+.aurora span:nth-child(2) {
+  top: 22%;
+  right: 2%;
+  width: 32rem;
+  height: 28rem;
+  background: color-mix(in oklab, var(--color-accent-2) 34%, transparent);
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+
+.aurora span:nth-child(3) {
+  top: 46%;
+  left: 38%;
+  width: 26rem;
+  height: 20rem;
+  background: color-mix(in oklab, var(--color-accent) 22%, transparent);
+  animation: drift-c 38s ease-in-out infinite alternate;
+}
+
+.light .aurora span {
+  filter: blur(110px);
+  opacity: 0.55;
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate3d(9rem, 4rem, 0) scale(1.15);
+  }
+}
+
+@keyframes drift-b {
+  to {
+    transform: translate3d(-7rem, 5rem, 0) scale(1.2);
+  }
+}
+
+@keyframes drift-c {
+  to {
+    transform: translate3d(4rem, -4rem, 0) scale(0.85);
+  }
+}
+
+/* ---------- Spotlight auf Karten ---------- */
+
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out-soft);
+  background: radial-gradient(
+    22rem circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    color-mix(in oklab, var(--color-accent) 15%, transparent),
+    transparent 65%
+  );
+}
+
+.spotlight:hover::before,
+.spotlight:focus-within::before {
+  opacity: 1;
+}
+
+.spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Keyword-Ticker ---------- */
+
+.ticker-mask {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-slide 52s linear infinite;
+}
+
+.ticker-mask:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Fortschrittsbalken: ohne Scroll-Timeline steuert JS die Skalierung. */
 .scroll-progress {
   transform: scaleX(0);
@@ -219,6 +362,13 @@ body {
     transform: scaleY(1);
   }
 
+  .aurora span,
+  .ticker-track {
+    /* !important, weil die nth-child-Regeln der Aurora höher spezifisch sind */
+    animation: none !important;
+    transform: none !important;
+  }
+
   *,
   *::before,
   *::after {
@@ -247,6 +397,12 @@ body {
   }
 
   .no-print {
+    display: none !important;
+  }
+
+  .grain,
+  .aurora,
+  .ticker-mask {
     display: none !important;
   }
 

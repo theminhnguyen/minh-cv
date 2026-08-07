@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Languages, Menu, Moon, Sun, X } from "lucide-react";
 import { useLang } from "@/lib/language";
 import { useTheme } from "@/lib/theme";
+import { subscribeScroll } from "@/lib/scroll";
 
 const navItems = [
-  { href: "#impact", key: "navImpact" },
-  { href: "#ai", key: "navAi" },
-  { href: "#career", key: "navCareer" },
-  { href: "#skills", key: "navSkills" },
-  { href: "#education", key: "navEducation" },
-  { href: "#contact", key: "navContact" },
+  { id: "impact", key: "navImpact" },
+  { id: "ai", key: "navAi" },
+  { id: "career", key: "navCareer" },
+  { id: "skills", key: "navSkills" },
+  { id: "education", key: "navEducation" },
+  { id: "contact", key: "navContact" },
 ] as const;
 
 export function Header() {
@@ -19,13 +20,29 @@ export function Header() {
   const { theme, toggle: toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [pill, setPill] = useState<{ left: number; width: number } | null>(null);
+  const linkRefs = useRef(new Map<string, HTMLAnchorElement>());
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return subscribeScroll(() => {
+      setScrolled(window.scrollY > 24);
+
+      // Aktiv ist der Abschnitt, dessen Oberkante zuletzt die Leseposition passiert hat.
+      const line = window.scrollY + window.innerHeight * 0.3;
+      let current: string | null = null;
+      for (const item of navItems) {
+        const section = document.getElementById(item.id);
+        if (section && section.offsetTop <= line) current = item.id;
+      }
+      setActiveId(current);
+    });
   }, []);
+
+  useLayoutEffect(() => {
+    const link = activeId ? linkRefs.current.get(activeId) : undefined;
+    setPill(link ? { left: link.offsetLeft, width: link.offsetWidth } : null);
+  }, [activeId, lang]);
 
   useEffect(() => {
     if (!open) return;
@@ -40,7 +57,7 @@ export function Header() {
     <header
       className={`no-print fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "border-b border-[var(--color-line)] bg-[color-mix(in_oklab,var(--color-bg)_85%,transparent)] backdrop-blur-lg"
+          ? "border-b border-[var(--color-line)] bg-[color-mix(in_oklab,var(--color-bg)_82%,transparent)] backdrop-blur-lg"
           : "border-b border-transparent"
       }`}
     >
@@ -49,13 +66,29 @@ export function Header() {
           <span className="text-[var(--color-accent)]">✦</span> minh
         </a>
 
-        <nav aria-label="Hauptnavigation" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
+        <nav aria-label="Hauptnavigation" className="relative hidden lg:block">
+          {pill ? (
+            <span
+              aria-hidden="true"
+              className="absolute top-0 h-full rounded-full bg-[var(--color-surface-2)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ left: pill.left, width: pill.width }}
+            />
+          ) : null}
+          <ul className="relative flex items-center gap-1">
             {navItems.map((item) => (
-              <li key={item.href}>
+              <li key={item.id}>
                 <a
-                  href={item.href}
-                  className="rounded-md px-3 py-2 text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]"
+                  ref={(node) => {
+                    if (node) linkRefs.current.set(item.id, node);
+                    else linkRefs.current.delete(item.id);
+                  }}
+                  href={`#${item.id}`}
+                  aria-current={activeId === item.id ? "true" : undefined}
+                  className={`block rounded-full px-3 py-2 text-sm transition-colors ${
+                    activeId === item.id
+                      ? "text-[var(--color-text)]"
+                      : "text-[var(--color-muted)] hover:text-[var(--color-text)]"
+                  }`}
                 >
                   {tk(item.key)}
                 </a>
@@ -107,11 +140,16 @@ export function Header() {
         >
           <ul className="mx-auto max-w-[68rem] px-5 py-3 sm:px-8">
             {navItems.map((item) => (
-              <li key={item.href}>
+              <li key={item.id}>
                 <a
-                  href={item.href}
+                  href={`#${item.id}`}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md px-2 py-3 text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]"
+                  aria-current={activeId === item.id ? "true" : undefined}
+                  className={`block rounded-md px-2 py-3 text-sm transition-colors ${
+                    activeId === item.id
+                      ? "text-[var(--color-accent)]"
+                      : "text-[var(--color-muted)] hover:text-[var(--color-text)]"
+                  }`}
                 >
                   {tk(item.key)}
                 </a>

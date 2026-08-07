@@ -8,12 +8,14 @@ import { NeuralBackdrop } from "./neural-backdrop";
 import { LinkedinIcon } from "./linkedin-icon";
 import { withBase } from "@/lib/paths";
 import { useReducedMotion, useScrollY } from "@/lib/use-scroll-progress";
+import { useMagnetic } from "@/lib/use-magnetic";
 
 export function Hero() {
   const { lang, t, tk } = useLang();
   const [before, accent, after] = hero.headline[lang];
   const scrollY = useScrollY();
   const reducedMotion = useReducedMotion();
+  const magnetic = useMagnetic();
 
   // Text und Portrait bewegen sich unterschiedlich schnell — klassischer Parallax.
   const depth = reducedMotion ? 0 : Math.min(scrollY, 900);
@@ -23,6 +25,11 @@ export function Hero() {
 
   return (
     <section id="top" className="relative isolate overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <div aria-hidden="true" className="aurora -z-20">
+        <span />
+        <span />
+        <span />
+      </div>
       <div aria-hidden="true" className="grid-backdrop absolute inset-0 -z-10" style={gridStyle} />
       <div className="absolute inset-0 -z-10">
         <NeuralBackdrop />
@@ -45,7 +52,8 @@ export function Hero() {
           <div className="no-print mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] transition-transform hover:-translate-y-0.5"
+              {...magnetic}
+              className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] transition-transform duration-200 ease-out"
             >
               {tk("ctaContact")}
               <ArrowRight
@@ -58,7 +66,8 @@ export function Hero() {
               href={site.studio}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] px-5 py-2.5 text-sm font-medium transition-colors hover:border-[var(--color-accent)]"
+              {...magnetic}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] px-5 py-2.5 text-sm font-medium transition-[colors,transform] duration-200 ease-out hover:border-[var(--color-accent)]"
             >
               {tk("ctaProducts")}
               <ArrowUpRight size={16} aria-hidden="true" />
@@ -68,14 +77,16 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="rounded-full border border-[var(--color-line)] p-2.5 text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-text)]"
+              {...magnetic}
+              className="rounded-full border border-[var(--color-line)] p-2.5 text-[var(--color-muted)] transition-[colors,transform] duration-200 ease-out hover:border-[var(--color-accent)] hover:text-[var(--color-text)]"
             >
               <LinkedinIcon size={16} aria-hidden="true" />
             </a>
             <button
               type="button"
               onClick={() => window.print()}
-              className="no-print inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] px-4 py-2.5 text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-text)]"
+              {...magnetic}
+              className="no-print inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] px-4 py-2.5 text-sm text-[var(--color-muted)] transition-[colors,transform] duration-200 ease-out hover:border-[var(--color-accent)] hover:text-[var(--color-text)]"
             >
               <Download size={16} aria-hidden="true" />
               {tk("ctaCv")}

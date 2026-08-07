@@ -3,9 +3,11 @@
 import { stats } from "@/content/site";
 import { useLang } from "@/lib/language";
 import { useScrollProgress } from "@/lib/use-scroll-progress";
+import { useSpotlight } from "@/lib/use-spotlight";
 
 function StatCard({ stat, index }: { stat: (typeof stats)[number]; index: number }) {
   const { t } = useLang();
+  const onMouseMove = useSpotlight();
   // Leicht versetzte Startpunkte, damit die Zahlen nacheinander hochlaufen.
   const { ref, progress } = useScrollProgress<HTMLDivElement>({
     start: 0.88 - index * 0.03,
@@ -17,8 +19,9 @@ function StatCard({ stat, index }: { stat: (typeof stats)[number]; index: number
   return (
     <div
       ref={ref}
+      onMouseMove={onMouseMove}
       data-visible={progress > 0}
-      className="reveal-card rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-6"
+      className="reveal-card spotlight rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-6 transition-colors duration-300 hover:border-[color-mix(in_oklab,var(--color-accent)_45%,var(--color-line))]"
     >
       <p className="font-mono text-4xl font-medium tracking-tight text-[var(--color-text)] tabular-nums sm:text-5xl">
         {stat.prefix}
