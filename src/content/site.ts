@@ -23,10 +23,6 @@ export const hero = {
     de: "9+ Jahre Produkte, Projekte und Teams in Enterprise-Umgebungen. Heute verantworte ich ein Entwicklungsteam für BPM und Intelligent Automation. Abends baue ich eigene KI-gestützte Produkte — vom ersten Prototyp bis zum Deployment.",
     en: "9+ years of products, projects and teams in enterprise environments. Today I lead a development team for BPM and intelligent automation. In my own time I build AI-powered products — from first prototype to deployment.",
   } satisfies L,
-  openTo: {
-    de: "Offen für Gespräche",
-    en: "Open to conversations",
-  } satisfies L,
 };
 
 export const stats: Stat[] = [

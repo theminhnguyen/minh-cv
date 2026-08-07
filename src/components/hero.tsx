@@ -21,15 +21,7 @@ export function Hero() {
 
       <div className="mx-auto grid w-full max-w-[68rem] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
         <div>
-          <p className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] px-3 py-1.5 font-mono text-[11px] tracking-wide text-[var(--color-muted)]">
-            <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
-            </span>
-            {t(hero.openTo)}
-          </p>
-
-          <h1 className="mt-6 text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl">
+          <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl">
             {before}
             <span className="text-gradient">{accent}</span>
             {after}
