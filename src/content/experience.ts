@@ -37,6 +37,13 @@ export const companies: Company[] = [
             },
           },
           {
+            label: { de: "KI-Agenten im Team verankert", en: "AI agents embedded in the team" },
+            text: {
+              de: "Ein Team klassischer Softwareentwickler zu einem Team entwickelt, das KI-Agenten für Kundenprojekte konzipiert, baut und ausliefert — mit echten Nutzern und Anforderungen auf der anderen Seite. Die Fähigkeit liegt heute im gesamten Team, nicht bei ein oder zwei Personen.",
+              en: "Grew a team of classic software developers into a team that designs, builds and ships AI agents for client projects — with real users and real requirements on the other side. The capability now sits with the whole team, not with one or two people.",
+            },
+          },
+          {
             label: { de: "Innovation & Expertise", en: "Innovation & expertise" },
             text: {
               de: "Kontinuierliche Beobachtung von Trends in KI, BPM und Softwareentwicklung als Treiber für laufende Verbesserung.",
