@@ -6,6 +6,19 @@ import type { L, Lang } from "@/content/types";
 
 const STORAGE_KEY = "minh-cv-lang";
 
+/**
+ * Produktzahl kommt von der Showcase-Seite (stats.json, dort aus den Produktdaten
+ * erzeugt). Der Fallback steht im statisch exportierten HTML, bis die Datei geladen ist.
+ */
+const STATS_URL = "https://theminhnguyen.github.io/stats.json";
+type ProductWords = Record<Lang, string>;
+const FALLBACK_WORDS: ProductWords = { de: "Achtzehn", en: "Eighteen" };
+
+function withCounts(text: string, words: ProductWords, lang: Lang) {
+  const word = words[lang];
+  return text.replaceAll("{Products}", word).replaceAll("{products}", word.toLowerCase());
+}
+
 type LanguageContextValue = {
   lang: Lang;
   setLang: (lang: Lang) => void;
@@ -24,6 +37,23 @@ function isLang(value: unknown): value is Lang {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("de");
+  const [words, setWords] = useState<ProductWords>(FALLBACK_WORDS);
+
+  useEffect(() => {
+    let alive = true;
+    fetch(STATS_URL, { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((stats) => {
+        const w = stats?.words;
+        if (alive && typeof w?.de === "string" && typeof w?.en === "string") setWords({ de: w.de, en: w.en });
+      })
+      .catch(() => {
+        // offline oder blockiert: Fallback bleibt stehen
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -55,8 +85,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const t = useCallback((value: L) => value[lang], [lang]);
-  const tk = useCallback((key: keyof typeof ui) => ui[key][lang], [lang]);
+  const t = useCallback((value: L) => withCounts(value[lang], words, lang), [lang, words]);
+  const tk = useCallback((key: keyof typeof ui) => withCounts(ui[key][lang], words, lang), [lang, words]);
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, toggle, t, tk }}>

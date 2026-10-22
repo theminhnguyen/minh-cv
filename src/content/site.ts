@@ -93,8 +93,8 @@ export const aiStory: Array<{ step: string; title: L; text: L }> = [
     step: "04",
     title: { de: "Neben dem Job", en: "Outside work" },
     text: {
-      de: "Achtzehn eigene Produkte im Vibe-Coding-Stil gebaut, die meisten live ausprobierbar — von der lokalen KI-Diktier-App bis zum begehbaren 3D-Schloss. Privat entstanden, beruflich nützlich: Ich schätze Aufwände realistischer ein und rede mit meinem Team auf Augenhöhe über Technik.",
-      en: "Eighteen of my own products built in vibe-coding style, most of them live to try — from a local AI dictation app to a walkable 3D castle. Built privately, useful professionally: I estimate effort more realistically and talk technology with my team as an equal.",
+      de: "{Products} eigene Produkte im Vibe-Coding-Stil gebaut, die meisten live ausprobierbar — von der lokalen KI-Diktier-App bis zum begehbaren 3D-Schloss. Privat entstanden, beruflich nützlich: Ich schätze Aufwände realistischer ein und rede mit meinem Team auf Augenhöhe über Technik.",
+      en: "{Products} of my own products built in vibe-coding style, most of them live to try — from a local AI dictation app to a walkable 3D castle. Built privately, useful professionally: I estimate effort more realistically and talk technology with my team as an equal.",
     },
   },
 ];
