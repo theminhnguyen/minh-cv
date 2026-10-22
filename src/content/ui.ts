@@ -29,8 +29,8 @@ export const ui: Record<string, L> = {
     en: "AI is not a trend topic for me but daily work — in three professional stages. Plus a private one that makes the difference.",
   },
   aiOutro: {
-    de: "Die dreizehn Produkte, die ich neben dem Job gebaut habe, findest du auf meiner Showcase-Seite.",
-    en: "The thirteen products I built alongside my job live on my showcase site.",
+    de: "Die achtzehn Produkte, die ich neben dem Job gebaut habe, findest du auf meiner Showcase-Seite.",
+    en: "The eighteen products I built alongside my job live on my showcase site.",
   },
 
   sectionCareer: { de: "Werdegang", en: "Career" },
